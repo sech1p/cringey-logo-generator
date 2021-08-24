@@ -45,8 +45,16 @@
     const update_name = (toptext, bottomtext) => {
       context.fillStyle = "#fff";
       context.font = "72px Poppins";
+
+      if (toptext.length >= 12)
+        context.font = "48px Poppins";
+
       context.textAlign = "center";
       context.fillText(toptext, 256, 240);
+
+      if (bottomtext.length >= 12)
+        context.font = "48px Poppins";
+
       context.fillText(bottomtext, 256, 310);
     }
 
