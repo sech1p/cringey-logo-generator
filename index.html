@@ -11,20 +11,25 @@
 <body>
   Tekst górny: <input type="text" id="toptext"></input><br>
   Tekst dolny: <input type="text" id="bottomtext"></input><br>
-  Kolor tła: <input value="#3399FF" data-jscolor="{}" onInput="update_bg(this.jscolor)"><br>
-  Kolor linii: <input value="#2060A1" data-jscolor="{}" onInput="update_line(this.jscolor)"><br>
+  Kolor tła: <input value="#3399FF" data-jscolor="{}" id="bgcolor"><br>
+  Kolor linii: <input value="#2060A1" data-jscolor="{}" id="linecolor"><br><br>
+  <button onClick="generate_logo()">Generuj (na własną odpowiedzialność)</button><br>
   <br>
   <canvas width="512" height="512" id="logo"></canvas>
+  <p>
+    Napisane w 15 minut przez <a href="https://nyarr.dev/">Aurorę</a>.<br>
+    Prawa autorskie to cringe, rób co chcesz.
+  </p>
 
   <script>
     let canvas = document.querySelector("#logo");
     let context = canvas.getContext("2d");
 
-    const update_bg = (jscolor) => canvas.style.background = jscolor;
+    const update_bg = (color) => canvas.style.background = color;
 
-    const update_line = (jscolor) => {
+    const update_line = (color) => {
       context.clearRect(0, 0, 512, 512);
-      context.strokeStyle = jscolor;
+      context.strokeStyle = color;
       context.lineWidth = 130;
       context.moveTo(0, 512);
       context.lineTo(200, -50);
@@ -33,12 +38,9 @@
       context.moveTo(512, 20);
       context.lineTo(300, 600);
       context.stroke();
-      update_name();
     }
 
-    const update_name = () => {
-      let toptext = document.getElementById("toptext").value;
-      let bottomtext = document.getElementById("bottomtext").value;
+    const update_name = (toptext, bottomtext) => {
       context.fillStyle = "#fff";
       context.font = "72px Poppins";
       context.textAlign = "center";
@@ -46,8 +48,15 @@
       context.fillText(bottomtext, 256, 310);
     }
 
-    update_bg("#3399FF");
-    update_line("#2060A1");
+    const generate_logo = () => {
+      let bgcolor = document.getElementById("bgcolor").value;
+      let linecolor = document.getElementById("linecolor").value;
+      let toptext = document.getElementById("toptext").value;
+      let bottomtext = document.getElementById("bottomtext").value;
+      update_bg(bgcolor);
+      update_line(linecolor);
+      update_name(toptext, bottomtext);
+    }
   </script>
 </body>
 </html>
