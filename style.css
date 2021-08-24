@@ -1,0 +1,79 @@
+body {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    font-size: 17px;
+}
+
+.background {
+    background-image: url(img/bg.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    height: 100vh;
+    width: 100%;
+}
+
+.input_hell {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.text {
+    background-color: rgba(0, 0, 0, 0.0);
+    color: rgb(255, 255, 255);
+    left: 50%;
+    font-family: sans-serif;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+input {
+    border: 1px solid rgb(205, 205, 205);
+    border-radius: 15px 15px;
+    height: 20px;
+    outline: none;
+    padding: 10px;
+    text-indent: 15px;
+}
+
+.btn {
+    border-radius: 15px 15px;
+}
+
+.slider {
+    background: rgb(205, 205, 205);
+    height: 20px;
+    outline: none;
+    opacity: 0.8;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    background: rgb(155, 120, 225);
+    cursor: grab;
+    height: 25px;
+    width: 25px;
+}
+
+.slider::-moz-range-thumb {
+    background: rgb(155, 120, 225);
+    cursor: grab;
+    height: 25px;
+    width: 25px;
+}
+
+#aurora {
+    color: rgb(255, 50, 170, 1.0);
+}
+
+#tsuki {
+    color: rgb(175, 50, 245, 1.0);
+}

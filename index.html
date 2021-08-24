@@ -3,75 +3,90 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cringey logo generator</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="style.css">
   <script src="jscolor.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-  Tekst górny: <input type="text" id="toptext"></input><br>
-  Tekst dolny: <input type="text" id="bottomtext"></input><br>
-  Kolor tła: <input value="#3399FF" data-jscolor="{}" id="bgcolor"><br>
-  Kolor linii: <input value="#2060A1" data-jscolor="{}" id="linecolor"><br>
-  Grubość linii: <input type="range" id="linewidth" min="80" max="200" value="130"><br><br>
-  <button onClick="generate_logo()">Generuj (na własną odpowiedzialność)</button><br>
-  <br>
-  <canvas width="512" height="512" id="logo"></canvas>
-  <br>
-  <p>
-    Możesz pobrać logo wybierając opcję "Zapisz obraz jako..." po kliknięciu na nie prawym przyciskiem myszy.<br>
-    Napisane w 15 minut przez <a href="https://nyarr.dev/">Aurorę</a>.<br>
-    Prawa autorskie to cringe, rób co chcesz.
-  </p>
+  <div class="background"></div>
+  <div class="text">
+    <h1>yet another logo generator</h1>
+    <div class="input_hell">
+      Tekst górny: <input type="text" id="toptext"></input><br>
+      Tekst dolny: <input type="text" id="bottomtext"></input><br>
+      Kolor tła: <input value="#3399FF" data-jscolor="{}" id="bgcolor"><br>
+      Kolor linii: <input value="#2060A1" data-jscolor="{}" id="linecolor"><br>
+      Grubość linii: <input class="slider" type="range" id="linewidth" min="80" max="200" value="130"><br><br>
+      <button class="w3-bar-item w3-button w3-teal btn" onClick="generate_logo()">Generuj (na własną odpowiedzialność)</button>
+    <br></div>
+    <br>
+    <canvas width="512" height="512" id="logo">
+      <img src="img/placeholder.jpg">
+    </canvas>
+    <br>
+    <p>
+      Możesz pobrać logo wybierając opcję "Zapisz obraz jako..." po kliknięciu na nie prawym przyciskiem myszy.<br>
+      Napisane w 15 minut przez <a id="aurora" href="https://nyarr.dev/">Aurorę</a>. Wygląd strony zrobiony przez <a id="tsuki" href="https://sech1p.rocks/">Tsuki</a>.<br>
+      Prawa autorskie to cringe, rób co chcesz.<br><br>
+      Animacja którą masz okazję podziwiać w tle pochodzi <a href="https://www.behance.net/gallery/92880429/ROG-Wallpaper-Design">stąd</a>.
+    </p>
+  
+    <script>
+      let canvas = document.querySelector("#logo");
+      let context = canvas.getContext("2d");
 
-  <script>
-    let canvas = document.querySelector("#logo");
-    let context = canvas.getContext("2d");
+      let placeholder = new Image();
+      placeholder.src = 'img/placeholder.jpg';
+      context.drawImage(placeholder, 0, 0);
 
-    const update_bg = (color) => {
-      context.fillStyle = color;
-      context.fillRect(0, 0, 512, 512);
-    }
-
-    const update_line = (color, width) => {
-      context.strokeStyle = color;
-      context.lineWidth = width;
-      context.moveTo(0, 512);
-      context.lineTo(200, -50);
-      context.moveTo(20, 490);
-      context.lineTo(600, -60);
-      context.moveTo(512, 20);
-      context.lineTo(300, 600);
-      context.stroke();
-    }
-
-    const update_name = (toptext, bottomtext) => {
-      context.fillStyle = "#fff";
-      context.font = "72px Poppins";
-
-      if (toptext.length >= 12)
-        context.font = "48px Poppins";
-
-      context.textAlign = "center";
-      context.fillText(toptext, 256, 240);
-
-      if (bottomtext.length >= 12)
-        context.font = "48px Poppins";
-
-      context.fillText(bottomtext, 256, 310);
-    }
-
-    const generate_logo = () => {
-      let bgcolor = document.getElementById("bgcolor").value;
-      let linecolor = document.getElementById("linecolor").value;
-      let toptext = document.getElementById("toptext").value;
-      let bottomtext = document.getElementById("bottomtext").value;
-      let linewidth = document.getElementById("linewidth").value;
-      context.clearRect(0, 0, 512, 512);
-      update_bg(bgcolor);
-      update_line(linecolor, linewidth);
-      update_name(toptext, bottomtext);
-    }
-  </script>
+      const update_bg = (color) => {
+        context.fillStyle = color;
+        context.fillRect(0, 0, 512, 512);
+      }
+  
+      const update_line = (color, width) => {
+        context.strokeStyle = color;
+        context.lineWidth = width;
+        context.moveTo(0, 512);
+        context.lineTo(200, -50);
+        context.moveTo(20, 490);
+        context.lineTo(600, -60);
+        context.moveTo(512, 20);
+        context.lineTo(300, 600);
+        context.stroke();
+      }
+  
+      const update_name = (toptext, bottomtext) => {
+        context.fillStyle = "#fff";
+        context.font = "72px Poppins";
+  
+        if (toptext.length >= 12)
+          context.font = "48px Poppins";
+  
+        context.textAlign = "center";
+        context.fillText(toptext, 256, 240);
+  
+        if (bottomtext.length >= 12)
+          context.font = "48px Poppins";
+  
+        context.fillText(bottomtext, 256, 310);
+      }
+  
+      const generate_logo = () => {
+        let bgcolor = document.getElementById("bgcolor").value;
+        let linecolor = document.getElementById("linecolor").value;
+        let toptext = document.getElementById("toptext").value;
+        let bottomtext = document.getElementById("bottomtext").value;
+        let linewidth = document.getElementById("linewidth").value;
+        context.clearRect(0, 0, 512, 512);
+        update_bg(bgcolor);
+        update_line(linecolor, linewidth);
+        update_name(toptext, bottomtext);
+      }
+    </script>
+  </div>
 </body>
 </html>
