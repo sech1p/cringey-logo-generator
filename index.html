@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cringey logo generator</title>
+  <script src="jscolor.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  Tekst górny: <input type="text" id="toptext"></input><br>
+  Tekst dolny: <input type="text" id="bottomtext"></input><br>
+  Kolor tła: <input value="#3399FF" data-jscolor="{}" onInput="update_bg(this.jscolor)"><br>
+  Kolor linii: <input value="#2060A1" data-jscolor="{}" onInput="update_line(this.jscolor)"><br>
+  <br>
+  <canvas width="512" height="512" id="logo"></canvas>
+
+  <script>
+    let canvas = document.querySelector("#logo");
+    let context = canvas.getContext("2d");
+
+    const update_bg = (jscolor) => canvas.style.background = jscolor;
+
+    const update_line = (jscolor) => {
+      context.clearRect(0, 0, 512, 512);
+      context.strokeStyle = jscolor;
+      context.lineWidth = 130;
+      context.moveTo(0, 512);
+      context.lineTo(200, -50);
+      context.moveTo(20, 490);
+      context.lineTo(600, -60);
+      context.moveTo(512, 20);
+      context.lineTo(300, 600);
+      context.stroke();
+      update_name();
+    }
+
+    const update_name = () => {
+      let toptext = document.getElementById("toptext").value;
+      let bottomtext = document.getElementById("bottomtext").value;
+      context.fillStyle = "#fff";
+      context.font = "72px Poppins";
+      context.textAlign = "center";
+      context.fillText(toptext, 256, 240);
+      context.fillText(bottomtext, 256, 310);
+    }
+
+    update_bg("#3399FF");
+    update_line("#2060A1");
+  </script>
+</body>
+</html>
