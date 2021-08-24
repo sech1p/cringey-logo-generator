@@ -25,10 +25,12 @@
     let canvas = document.querySelector("#logo");
     let context = canvas.getContext("2d");
 
-    const update_bg = (color) => canvas.style.background = color;
+    const update_bg = (color) => {
+      context.fillStyle = color;
+      context.fillRect(0, 0, 512, 512);
+    }
 
     const update_line = (color) => {
-      context.clearRect(0, 0, 512, 512);
       context.strokeStyle = color;
       context.lineWidth = 130;
       context.moveTo(0, 512);
@@ -53,6 +55,7 @@
       let linecolor = document.getElementById("linecolor").value;
       let toptext = document.getElementById("toptext").value;
       let bottomtext = document.getElementById("bottomtext").value;
+      context.clearRect(0, 0, 512, 512);
       update_bg(bgcolor);
       update_line(linecolor);
       update_name(toptext, bottomtext);
